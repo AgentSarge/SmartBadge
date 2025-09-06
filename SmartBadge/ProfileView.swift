@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State private var showProfileDetails = false
+    @State private var showPushNotifications = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -178,33 +179,38 @@ struct ProfileView: View {
                     .cornerRadius(12)
                     
                     // Push Notifications
-                    HStack(spacing: 16) {
-                        HStack(spacing: 10) {
+                    Button(action: {
+                        showPushNotifications = true
+                    }) {
+                        HStack(spacing: 16) {
+                            HStack(spacing: 10) {
+                                ZStack {
+                                    // Notification icon placeholder
+                                }
+                                .frame(width: 24, height: 24)
+                            }
+                            .padding(10)
+                            .frame(width: 40, height: 40)
+                            .background(.white)
+                            .cornerRadius(32)
+                            
+                            Text("Push Notifications")
+                                .font(Font.custom("Inter", size: 16).weight(.medium))
+                                .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
+                            
+                            Spacer()
+                            
                             ZStack {
-                                // Notification icon placeholder
+                                // Chevron icon placeholder
                             }
                             .frame(width: 24, height: 24)
                         }
-                        .padding(10)
-                        .frame(width: 40, height: 40)
-                        .background(.white)
-                        .cornerRadius(32)
-                        
-                        Text("Push Notifications")
-                            .font(Font.custom("Inter", size: 16).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        
-                        Spacer()
-                        
-                        ZStack {
-                            // Chevron icon placeholder
-                        }
-                        .frame(width: 24, height: 24)
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 358)
+                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                        .cornerRadius(12)
                     }
-                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                    .frame(width: 358)
-                    .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                    .cornerRadius(12)
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 VStack(alignment: .leading, spacing: 15) {
@@ -319,6 +325,9 @@ struct ProfileView: View {
         .background(.white)
         .fullScreenCover(isPresented: $showProfileDetails) {
             ProfileDetailsView()
+        }
+        .fullScreenCover(isPresented: $showPushNotifications) {
+            PushNotificationsView()
         }
     }
 }
