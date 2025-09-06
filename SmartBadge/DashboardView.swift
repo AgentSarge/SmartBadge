@@ -10,535 +10,321 @@ import SwiftUI
 struct DashboardView: View {
     @State private var smartTVEnabled = true
     @State private var airPurifierEnabled = false
-    @State private var fansEnabled = false
     @State private var airConditionerEnabled = true
     @State private var smartLightEnabled = true
+    @State private var recording1Enabled = true
+    @State private var recording2Enabled = true
     
     var body: some View {
-        ZStack {
-            // White background
-            Color.white
-                .ignoresSafeArea()
-            
-            // Status bar
-            HStack(spacing: 67) {
-                HStack(spacing: 4) {
-                    HStack(spacing: 0) {
-                        Text("9")
-                            .font(Font.custom("Rubik", size: 14).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        Text(":")
-                            .font(Font.custom("Rubik", size: 14).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        Text("41")
-                            .font(Font.custom("Rubik", size: 14).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                    }
-                }
-                HStack(spacing: 8.50) {
-                    ZStack {
-                        // Signal icon placeholder
-                    }
-                    .frame(width: 18, height: 10)
-                    ZStack {
-                        // WiFi icon placeholder
-                    }
-                    .frame(width: 16, height: 11.62)
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 17, height: 8)
-                            .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-                            .cornerRadius(1)
-                            .offset(x: -1.50, y: 0)
-                    }
-                    .frame(width: 24, height: 12)
-                }
-            }
-            .padding(EdgeInsets(top: 16, leading: 35, bottom: 16, trailing: 20))
-            .frame(width: 390, height: 48)
-            .offset(x: 0, y: -398)
-            
-            // Header with title and icon
-            HStack(spacing: 170) {
-                Text("Dashboard")
-                    .font(Font.custom("Inter", size: 24).weight(.semibold))
-                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                ZStack {
-                    // Header icon placeholder
-                }
-                .frame(width: 32, height: 32)
-            }
-            .frame(width: 358)
-            .offset(x: 0, y: -342)
-            
-            // Follow Up badge
-            HStack(alignment: .top, spacing: 136) {
-                HStack(alignment: .top, spacing: 8) {
-                    ZStack {
-                        ZStack {
-                            // Follow up icon placeholder
-                        }
-                        .frame(width: 15, height: 15)
-                        .offset(x: 0.38, y: 0)
-                    }
-                    .frame(width: 24, height: 24)
-                    .background(.white)
-                    .cornerRadius(21)
-                    VStack(alignment: .leading, spacing: 4) {
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Follow Up")
-                                .font(Font.custom("Inter", size: 14).weight(.medium))
-                                .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        }
-                        Text("2 Active")
-                            .font(Font.custom("Inter", size: 11))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                            .opacity(0.80)
-                    }
-                }
-                .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
-                .background(Color(red: 1, green: 0.34, blue: 0.08))
-                .cornerRadius(14)
-            }
-            .offset(x: -118, y: -277)
-            
-            // Recent Recordings section
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Recent Recordings")
-                    .font(Font.custom("Inter", size: 20).weight(.medium))
-                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                VStack(alignment: .leading, spacing: 16) {
-                    // Recording 1
-                    HStack(spacing: 16) {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .padding(10)
-                            .frame(width: 40, height: 40)
-                            .background(.white)
-                            .cornerRadius(32)
-                        Text("Recording 1 ")
-                            .font(Font.custom("Inter", size: 16).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        Spacer()
-                        // Toggle switch
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 32, height: 16)
-                                .background(Color(red: 1, green: 0.34, blue: 0.08))
-                                .cornerRadius(10)
-                                .offset(x: 0, y: 0)
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 1.60, height: 4.80)
-                                    .background(Color(red: 1, green: 0.34, blue: 0.08))
-                                    .cornerRadius(1)
-                                    .offset(x: 0, y: -0)
+        VStack(spacing: 0) {
+            // Main content
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header section
+                    VStack(spacing: 16) {
+                        // Title and add button
+                        HStack {
+                            Text("Dashboard")
+                                .font(Font.custom("Inter", size: 28).weight(.bold))
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            // Add button
+                            Button(action: {
+                                // Handle add action
+                            }) {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 32, height: 32)
+                                        .foregroundColor(.black)
+                                    
+                                    Text("+")
+                                        .font(.system(size: 20, weight: .medium))
+                                        .foregroundColor(.white)
+                                }
                             }
-                            .frame(width: 14.40, height: 14.40)
-                            .background(.white)
-                            .cornerRadius(9)
-                            .offset(x: 8, y: 0)
                         }
-                        .frame(width: 32, height: 16)
+                        
+                        // Follow Up badge
+                        HStack(spacing: 8) {
+                            Image(systemName: "lightbulb")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.white)
+                            
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Follow Up")
+                                    .font(Font.custom("Inter", size: 14).weight(.medium))
+                                    .foregroundColor(.white)
+                                Text("2 Active")
+                                    .font(Font.custom("Inter", size: 12))
+                                    .foregroundColor(.white.opacity(0.8))
+                            }
+                            
+                            Spacer()
+                        }
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(Color(red: 1, green: 0.34, blue: 0.08))
+                        .cornerRadius(12)
                     }
-                    .padding(EdgeInsets(top: 20, leading: 16, bottom: 14, trailing: 16))
-                    .frame(width: 342)
-                    .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                    .cornerRadius(12)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
                     
-                    // Recording 2
-                    HStack(spacing: 16) {
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .padding(10)
-                            .frame(width: 40, height: 40)
-                            .background(.white)
-                            .cornerRadius(32)
-                        Text("Recording 2")
-                            .font(Font.custom("Inter", size: 16).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        Spacer()
-                        // Toggle switch
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 32, height: 16)
-                                .background(Color(red: 1, green: 0.34, blue: 0.08))
-                                .cornerRadius(10)
-                                .offset(x: 0, y: 0)
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 1.60, height: 4.80)
-                                    .background(Color(red: 1, green: 0.34, blue: 0.08))
-                                    .cornerRadius(1)
-                                    .offset(x: 0, y: -0)
-                            }
-                            .frame(width: 14.40, height: 14.40)
-                            .background(.white)
-                            .cornerRadius(9)
-                            .offset(x: 8, y: 0)
-                        }
-                        .frame(width: 32, height: 16)
-                    }
-                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                    .frame(width: 342)
-                    .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                    .cornerRadius(12)
-                }
-                .frame(width: 354)
-            }
-            .offset(x: -2, y: -132)
-            
-            // Stats section
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Stats")
-                    .font(Font.custom("Inter", size: 20).weight(.medium))
-                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                HStack(alignment: .top, spacing: 16) {
-                    // Left column
+                    // Recent Recordings section
                     VStack(alignment: .leading, spacing: 16) {
-                        // Smart TV
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 16) {
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 20, height: 20)
-                                        .offset(x: 0, y: 0)
-                                }
-                                .frame(width: 32, height: 32)
-                                .background(.white)
-                                .cornerRadius(21)
-                                Spacer()
-                                // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(smartTVEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 1.60, height: 4.80)
-                                            .background(smartTVEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(1)
-                                            .offset(x: 0, y: -0)
-                                    }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: smartTVEnabled ? 8 : -8, y: 0)
-                                }
-                                .frame(width: 32, height: 16)
-                            }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Smart TV")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("1 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
-                        }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
+                        Text("Recent Recordings")
+                            .font(Font.custom("Inter", size: 20).weight(.medium))
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 20)
                         
-                        // Air Purifier
-                        VStack(alignment: .leading, spacing: 16) {
+                        VStack(spacing: 12) {
+                            // Recording 1
                             HStack(spacing: 16) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 32, height: 32)
-                                    .background(.white)
-                                    .cornerRadius(21)
+                                Text("Recording 1")
+                                    .font(Font.custom("Inter", size: 16).weight(.medium))
+                                    .foregroundColor(.black)
+                                
                                 Spacer()
+                                
                                 // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(airPurifierEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
+                                Button(action: {
+                                    recording1Enabled.toggle()
+                                }) {
                                     ZStack {
                                         Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 4.80, height: 4.80)
-                                            .background(airPurifierEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(3)
-                                            .offset(x: -0, y: -0)
+                                            .frame(width: 32, height: 16)
+                                            .background(recording1Enabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
+                                            .cornerRadius(10)
+                                        
+                                        Circle()
+                                            .frame(width: 12, height: 12)
+                                            .background(.white)
+                                            .offset(x: recording1Enabled ? 8 : -8)
+                                        
+                                        // Exclamation mark
+                                        if recording1Enabled {
+                                            Text("!")
+                                                .font(.system(size: 8, weight: .bold))
+                                                .foregroundColor(Color(red: 1, green: 0.34, blue: 0.08))
+                                        }
                                     }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: airPurifierEnabled ? 8 : -8, y: 0)
                                 }
-                                .frame(width: 32, height: 16)
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Air Purifier")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("4 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
-                        }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
-                        
-                        // Fans
-                        VStack(alignment: .leading, spacing: 16) {
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                            .cornerRadius(12)
+                            
+                            // Recording 2
                             HStack(spacing: 16) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 32, height: 32)
-                                    .background(.white)
-                                    .cornerRadius(21)
+                                Text("Recording 2")
+                                    .font(Font.custom("Inter", size: 16).weight(.medium))
+                                    .foregroundColor(.black)
+                                
                                 Spacer()
+                                
                                 // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(fansEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
+                                Button(action: {
+                                    recording2Enabled.toggle()
+                                }) {
                                     ZStack {
                                         Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 4.80, height: 4.80)
-                                            .background(fansEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(3)
-                                            .offset(x: -0, y: -0)
+                                            .frame(width: 32, height: 16)
+                                            .background(recording2Enabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
+                                            .cornerRadius(10)
+                                        
+                                        Circle()
+                                            .frame(width: 12, height: 12)
+                                            .background(.white)
+                                            .offset(x: recording2Enabled ? 8 : -8)
+                                        
+                                        // Exclamation mark
+                                        if recording2Enabled {
+                                            Text("!")
+                                                .font(.system(size: 8, weight: .bold))
+                                                .foregroundColor(Color(red: 1, green: 0.34, blue: 0.08))
+                                        }
                                     }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: fansEnabled ? 8 : -8, y: 0)
                                 }
-                                .frame(width: 32, height: 16)
+                                .buttonStyle(PlainButtonStyle())
                             }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Fans")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("2 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                            .cornerRadius(12)
                         }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
+                        .padding(.horizontal, 20)
                     }
                     
-                    // Right column
+                    // Stats section
                     VStack(alignment: .leading, spacing: 16) {
-                        // Air Conditioner
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 16) {
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 20, height: 20)
-                                        .offset(x: 0.50, y: 0)
-                                }
-                                .frame(width: 32, height: 32)
-                                .background(.white)
-                                .cornerRadius(21)
-                                Spacer()
-                                // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(airConditionerEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 1.60, height: 4.80)
-                                            .background(airConditionerEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(1)
-                                            .offset(x: 0, y: -0)
-                                    }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: airConditionerEnabled ? 8 : -8, y: 0)
-                                }
-                                .frame(width: 32, height: 16)
-                            }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Air Conditioner")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("1 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
-                        }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
+                        Text("Stats")
+                            .font(Font.custom("Inter", size: 20).weight(.medium))
+                            .foregroundColor(.black)
+                            .padding(.horizontal, 20)
                         
-                        // Smart Light
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 16) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 32, height: 32)
-                                    .background(.white)
-                                    .cornerRadius(21)
-                                Spacer()
-                                // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(smartLightEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 1.60, height: 4.80)
-                                            .background(smartLightEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(1)
-                                            .offset(x: 0, y: -0)
-                                    }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: smartLightEnabled ? 8 : -8, y: 0)
-                                }
-                                .frame(width: 32, height: 16)
-                            }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Smart Light")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("4 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
+                        // Grid of device cards
+                        LazyVGrid(columns: [
+                            GridItem(.flexible()),
+                            GridItem(.flexible())
+                        ], spacing: 16) {
+                            // Smart TV
+                            DeviceCard(
+                                title: "Smart TV",
+                                deviceCount: "1 Device",
+                                isEnabled: $smartTVEnabled
+                            )
+                            
+                            // Air Conditioner
+                            DeviceCard(
+                                title: "Air Conditioner",
+                                deviceCount: "1 Device",
+                                isEnabled: $airConditionerEnabled
+                            )
+                            
+                            // Air Purifier
+                            DeviceCard(
+                                title: "Air Purifier",
+                                deviceCount: "4 Device",
+                                isEnabled: $airPurifierEnabled
+                            )
+                            
+                            // Smart Light
+                            DeviceCard(
+                                title: "Smart Light",
+                                deviceCount: "4 Device",
+                                isEnabled: $smartLightEnabled
+                            )
+                            
+                            // Empty card 1
+                            DeviceCard(
+                                title: "",
+                                deviceCount: "",
+                                isEnabled: .constant(false)
+                            )
+                            
+                            // Empty card 2
+                            DeviceCard(
+                                title: "",
+                                deviceCount: "",
+                                isEnabled: .constant(true)
+                            )
                         }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
-                        
-                        // Smart Light (duplicate)
-                        VStack(alignment: .leading, spacing: 16) {
-                            HStack(spacing: 16) {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 32, height: 32)
-                                    .background(.white)
-                                    .cornerRadius(21)
-                                Spacer()
-                                // Toggle switch
-                                ZStack {
-                                    Rectangle()
-                                        .foregroundColor(.clear)
-                                        .frame(width: 32, height: 16)
-                                        .background(smartLightEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.06, green: 0.06, blue: 0.06))
-                                        .cornerRadius(10)
-                                        .offset(x: 0, y: 0)
-                                    ZStack {
-                                        Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: 1.60, height: 4.80)
-                                            .background(smartLightEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color(red: 0.12, green: 0.10, blue: 0.14))
-                                            .cornerRadius(1)
-                                            .offset(x: 0, y: -0)
-                                    }
-                                    .frame(width: 14.40, height: 14.40)
-                                    .background(.white)
-                                    .cornerRadius(9)
-                                    .offset(x: smartLightEnabled ? 8 : -8, y: 0)
-                                }
-                                .frame(width: 32, height: 16)
-                            }
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text("Smart Light")
-                                    .font(Font.custom("Inter", size: 16).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                Text("4 Device")
-                                    .font(Font.custom("Inter", size: 12).weight(.medium))
-                                    .foregroundColor(.black)
-                                    .opacity(0.60)
-                            }
-                        }
-                        .padding(16)
-                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                        .cornerRadius(12)
+                        .padding(.horizontal, 20)
                     }
+                    
+                    // Bottom padding for navigation bar
+                    Spacer()
+                        .frame(height: 100)
                 }
-                .frame(width: 358)
             }
-            .offset(x: 0, y: 188)
             
-            // Bottom navigation tabs
-            HStack(alignment: .top, spacing: 8) {
-                // Active tab (Dashboard)
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
+            // Bottom navigation bar
+            HStack(spacing: 0) {
+                // Dashboard (Active)
+                VStack(spacing: 4) {
+                    Image(systemName: "grid")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
                     Text("Dashboard")
-                        .font(Font.custom("Manrope", size: 14).weight(.semibold))
+                        .font(Font.custom("Inter", size: 12).weight(.medium))
                         .foregroundColor(.white)
                 }
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                .background(Color(red: 0.17, green: 0.17, blue: 0.17))
-                .cornerRadius(8)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+                .cornerRadius(12)
+                .padding(.horizontal, 8)
                 
-                // Tab 2
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
+                // Recordings
+                VStack(spacing: 4) {
+                    Image(systemName: "doc.text")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
                 }
-                .padding(8)
-                .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-                .cornerRadius(8)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
                 
-                // Tab 3
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
+                // Profile
+                VStack(spacing: 4) {
+                    Image(systemName: "person")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
                 }
-                .padding(8)
-                .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-                .cornerRadius(8)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
             }
-            .padding(8)
-            .frame(width: 358)
-            .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-            .cornerRadius(16)
-            .offset(x: 0, y: 370)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
+            .background(Color(red: 0.1, green: 0.1, blue: 0.1))
+            .cornerRadius(20)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 20)
         }
-        .frame(width: 390, height: 844)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.white)
+    }
+}
+
+// Device Card Component
+struct DeviceCard: View {
+    let title: String
+    let deviceCount: String
+    @Binding var isEnabled: Bool
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            HStack {
+                // Device icon placeholder
+                Circle()
+                    .frame(width: 32, height: 32)
+                    .background(.white)
+                
+                Spacer()
+                
+                // Toggle switch
+                Button(action: {
+                    isEnabled.toggle()
+                }) {
+                    ZStack {
+                        Rectangle()
+                            .frame(width: 32, height: 16)
+                            .background(isEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
+                            .cornerRadius(10)
+                        
+                        Circle()
+                            .frame(width: 12, height: 12)
+                            .background(.white)
+                            .offset(x: isEnabled ? 8 : -8)
+                        
+                        // Exclamation mark for enabled state
+                        if isEnabled {
+                            Text("!")
+                                .font(.system(size: 8, weight: .bold))
+                                .foregroundColor(Color(red: 1, green: 0.34, blue: 0.08))
+                        }
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            
+            if !title.isEmpty {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(Font.custom("Inter", size: 16).weight(.medium))
+                        .foregroundColor(.black)
+                    Text(deviceCount)
+                        .font(Font.custom("Inter", size: 12).weight(.medium))
+                        .foregroundColor(.black.opacity(0.6))
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .padding(16)
+        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+        .cornerRadius(12)
     }
 }
 
