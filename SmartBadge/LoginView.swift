@@ -11,6 +11,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showSignUp = false
+    @State private var showRecoverPassword = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -98,6 +99,19 @@ struct LoginView: View {
                                 .frame(height: 48)
                                 .background(Color(red: 0.97, green: 0.97, blue: 0.97))
                                 .cornerRadius(8)
+                                
+                                // Forgot Password link
+                                HStack {
+                                    Spacer()
+                                    Button(action: {
+                                        showRecoverPassword = true
+                                    }) {
+                                        Text("Forgot Password?")
+                                            .font(Font.custom("Rubik", size: 12))
+                                            .tracking(0.40)
+                                            .foregroundColor(Color(red: 0.29, green: 0.28, blue: 0.39))
+                                    }
+                                }
                             }
                         }
                         .frame(width: 358)
@@ -232,6 +246,9 @@ struct LoginView: View {
         .background(.white)
         .fullScreenCover(isPresented: $showSignUp) {
             SignUpView()
+        }
+        .fullScreenCover(isPresented: $showRecoverPassword) {
+            RecoverPasswordView()
         }
     }
     
