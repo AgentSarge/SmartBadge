@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  SignUpView.swift
 //  SmartBadge
 //
 //  Created by Self Labs on 8/24/25.
@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct SignUpView: View {
+    @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
-    @State private var showSignUp = false
+    @State private var showLogin = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -21,39 +22,34 @@ struct LoginView: View {
             
             // Top header with logo and title
             VStack(alignment: .leading, spacing: 32) {
-                VStack(alignment: .leading, spacing: 0.92) {
-                    HStack(spacing: 6.82) {
-                        ZStack {
-                            ZStack {
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 42, height: 42)
-                                    .background(Color(red: 0.50, green: 0.23, blue: 0.27).opacity(0.50))
-                                    .cornerRadius(19)
-                                    .offset(x: 0.53, y: 0.53)
-                            }
-                            .frame(width: 40.94, height: 40.94)
-                            .background(Color(red: 1, green: 0.34, blue: 0.08))
-                            .cornerRadius(9.28)
-                            .offset(x: -75.42, y: 0)
-                            
-                            ZStack {
-                                Text("SalesTag")
-                                    .font(Font.custom("Rubik", size: 34.12).weight(.medium))
-                                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                                    .offset(x: 0, y: 0)
-                            }
-                            .frame(width: 144, height: 40)
-                            .offset(x: 23.89, y: 0)
-                        }
-                        .frame(width: 191.77, height: 40.94)
+            ZStack {
+                ZStack {
+                    Rectangle()
+                        .foregroundColor(.clear)
+                            .frame(width: 42, height: 42)
+                            .background(Color(red: 0.50, green: 0.23, blue: 0.27).opacity(0.50))
+                            .cornerRadius(19)
+                            .offset(x: 0.53, y: 0.53)
                     }
+                    .frame(width: 40.94, height: 40.94)
+                    .background(Color(red: 1, green: 0.34, blue: 0.08))
+                    .cornerRadius(9.28)
+                    .offset(x: -75.42, y: 0)
+                    
+                    ZStack {
+                        Text("SalesTag")
+                            .font(Font.custom("Rubik", size: 34.12).weight(.medium))
+                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
+                            .offset(x: 0, y: 0)
+                    }
+                    .frame(width: 144, height: 40)
+                    .offset(x: 23.89, y: 0)
                 }
+                .frame(width: 191.77, height: 40.94)
                 
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Sign In")
+                    Text("Sign up")
                         .font(Font.custom("Rubik", size: 20).weight(.medium))
-                        .tracking(0.25)
                         .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
                     
                     Text("Looks like you don't have an account. Let's create a new account for you.")
@@ -68,6 +64,23 @@ struct LoginView: View {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(alignment: .leading, spacing: 16) {
+                        // Name Field
+                        VStack(alignment: .leading, spacing: 8) {
+                            VStack(alignment: .leading, spacing: 4) {
+                                HStack(spacing: 8) {
+                                    TextField("Name", text: $name)
+                                        .font(Font.custom("Inter", size: 16))
+                                        .tracking(0.50)
+                                        .foregroundColor(Color(red: 0.29, green: 0.28, blue: 0.39))
+                                }
+                                .padding(EdgeInsets(top: 10, leading: 16, bottom: 10, trailing: 16))
+                                .frame(height: 48)
+                                .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                                .cornerRadius(8)
+                            }
+                        }
+                        .frame(width: 358)
+                        
                         // Email Field
                         VStack(alignment: .leading, spacing: 8) {
                             VStack(alignment: .leading, spacing: 4) {
@@ -103,13 +116,19 @@ struct LoginView: View {
                         .frame(width: 358)
                     }
                     
-                    // Login Button
+                    // Terms and Privacy Policy text
+                    Text("By selecting Create Account below, I agree to Terms of Service & Privacy Policy")
+                        .font(Font.custom("Rubik", size: 14))
+                        .lineSpacing(18)
+                        .foregroundColor(Color(red: 0.29, green: 0.28, blue: 0.39))
+                    
+                    // Create Account Button
                     VStack(alignment: .leading, spacing: 10) {
                         Button(action: {
-                            handleLogin()
+                            handleSignUp()
                         }) {
                             HStack(spacing: 4) {
-                                Text("Login")
+                                Text("Create Account")
                                     .font(Font.custom("Rubik", size: 14).weight(.medium))
                                     .tracking(0.25)
                                     .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
@@ -148,14 +167,23 @@ struct LoginView: View {
                 }
                 .frame(width: 358)
                 
-                // Social login options
+                // Social sign up options
                 VStack(alignment: .leading, spacing: 24) {
                     VStack(alignment: .leading, spacing: 16) {
                         // Google Sign Up
-                        Button(action: {
+                Button(action: {
                             // Handle Google sign up
-                        }) {
+                }) {
                             HStack(spacing: 40) {
+                                ZStack {
+                    ZStack {
+                                        // Google icon placeholder
+                                    }
+                                    .frame(width: 16, height: 16.38)
+                                    .offset(x: 0, y: -0.09)
+                                }
+                                .frame(width: 24, height: 24.56)
+                                
                                 Text("Sign Up with Google")
                                     .font(Font.custom("Rubik", size: 14))
                                     .tracking(0.25)
@@ -168,7 +196,7 @@ struct LoginView: View {
                         }
                         
                         // Apple Sign Up
-                        Button(action: {
+                    Button(action: {
                             // Handle Apple sign up
                         }) {
                             HStack(spacing: 40) {
@@ -191,8 +219,8 @@ struct LoginView: View {
                     
                     // Continue as guest
                     VStack(alignment: .leading, spacing: 10) {
-                        Button(action: {
-                            // Handle guest login
+                    Button(action: {
+                            // Handle guest sign up
                         }) {
                             HStack(spacing: 4) {
                                 Text("Continue as a guest")
@@ -207,13 +235,13 @@ struct LoginView: View {
                     }
                     .frame(width: 358)
                     
-                    // Sign Up link
+                    // Sign In link
                     VStack(alignment: .leading, spacing: 10) {
-                        Button(action: {
-                            showSignUp = true
+                    Button(action: {
+                            showLogin = true
                         }) {
                             HStack(spacing: 4) {
-                                Text("Don't have an account? Sign Up")
+                                Text("Already have an account? Sign In")
                                     .font(Font.custom("Rubik", size: 14).weight(.medium))
                                     .tracking(0.25)
                                     .foregroundColor(Color(red: 1, green: 0.34, blue: 0.08))
@@ -226,22 +254,22 @@ struct LoginView: View {
                     .frame(width: 358)
                 }
             }
-            .offset(x: 0, y: 44)
+            .offset(x: 0, y: 109.78)
         }
         .frame(width: 390, height: 844)
         .background(.white)
-        .fullScreenCover(isPresented: $showSignUp) {
-            SignUpView()
+        .fullScreenCover(isPresented: $showLogin) {
+            LoginView()
         }
     }
     
     // MARK: - Helper Functions
-    private func handleLogin() {
-        // Handle login logic
+    private func handleSignUp() {
+        // Handle sign up logic
         dismiss()
     }
 }
 
 #Preview {
-    LoginView()
+    SignUpView()
 }
