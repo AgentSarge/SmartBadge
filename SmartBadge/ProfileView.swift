@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @State private var showProfileDetails = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -114,33 +115,38 @@ struct ProfileView: View {
             VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 16) {
                     // Profile details
-                    HStack(spacing: 16) {
-                        HStack(spacing: 10) {
-                            ZStack {
-                                // Profile icon placeholder
+                    Button(action: {
+                        showProfileDetails = true
+                    }) {
+                        HStack(spacing: 16) {
+                            HStack(spacing: 10) {
+                                ZStack {
+                                    // Profile icon placeholder
+                                }
+                                .frame(width: 22, height: 22)
                             }
-                            .frame(width: 22, height: 22)
+                            .padding(10)
+                            .frame(width: 40, height: 40)
+                            .background(.white)
+                            .cornerRadius(32)
+                            
+                            Text("Profile details")
+                                .font(Font.custom("Inter", size: 16).weight(.medium))
+                                .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
+                            
+                            Spacer()
+                            
+                            ZStack {
+                                // Chevron icon placeholder
+                            }
+                            .frame(width: 24, height: 24)
                         }
-                        .padding(10)
-                        .frame(width: 40, height: 40)
-                        .background(.white)
-                        .cornerRadius(32)
-                        
-                        Text("Profile details")
-                            .font(Font.custom("Inter", size: 16).weight(.medium))
-                            .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                        
-                        Spacer()
-                        
-                        ZStack {
-                            // Chevron icon placeholder
-                        }
-                        .frame(width: 24, height: 24)
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                        .frame(width: 358)
+                        .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                        .cornerRadius(12)
                     }
-                    .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-                    .frame(width: 358)
-                    .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-                    .cornerRadius(12)
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Settings
                     HStack(spacing: 16) {
@@ -311,6 +317,9 @@ struct ProfileView: View {
         }
         .frame(width: 390, height: 844)
         .background(.white)
+        .fullScreenCover(isPresented: $showProfileDetails) {
+            ProfileDetailsView()
+        }
     }
 }
 
