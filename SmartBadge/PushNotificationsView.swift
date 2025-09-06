@@ -12,131 +12,136 @@ struct PushNotificationsView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        ZStack {
-            // White background
-            Color.white
-                .ignoresSafeArea()
-            
-            // Header with back button and title
-            HStack(spacing: 4) {
-                Button(action: {
-                    dismiss()
-                }) {
-                    ZStack {
-                        // Back arrow icon placeholder
-                    }
-                    .frame(width: 20, height: 20)
-                }
-                
-                Text("Profile")
-                    .font(Font.custom("Inter", size: 16).weight(.semibold))
-                    .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-            }
-            .padding(16)
-            .frame(width: 390)
-            .offset(x: 0, y: -348)
-            
-            // Page title
-            Text("Push Notifications")
-                .font(Font.custom("Inter", size: 24).weight(.semibold))
-                .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                .offset(x: -72.50, y: -291.50)
-            
-            // Push notifications toggle section
-            HStack(alignment: .top, spacing: 16) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Push Notifications")
-                        .font(Font.custom("Inter", size: 16).weight(.medium))
-                        .foregroundColor(Color(red: 0.06, green: 0.06, blue: 0.06))
-                    Text("Allow app to send you push notifications on your lockscreen")
-                        .font(Font.custom("Inter", size: 12).weight(.medium))
-                        .foregroundColor(.black)
-                        .opacity(0.60)
-                }
-                
-                // Custom toggle switch
-                Button(action: {
-                    pushNotificationsEnabled.toggle()
-                }) {
-                    ZStack {
-                        // Toggle background
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 32, height: 16)
-                            .background(pushNotificationsEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
-                            .cornerRadius(10)
-                            .offset(x: 0, y: 0)
-                        
-                        // Toggle thumb
-                        ZStack {
-                            Rectangle()
-                                .foregroundColor(.clear)
-                                .frame(width: 1.60, height: 4.80)
-                                .background(pushNotificationsEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
-                                .cornerRadius(1)
-                                .offset(x: 0, y: -0)
+        VStack(spacing: 0) {
+            // Main content
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header section
+                    VStack(spacing: 16) {
+                        // Back button and title
+                        HStack(spacing: 4) {
+                            Button(action: {
+                                dismiss()
+                            }) {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.black)
+                            }
+                            
+                            Text("Profile")
+                                .font(Font.custom("Inter", size: 16).weight(.medium))
+                                .foregroundColor(.black)
+                            
+                            Spacer()
                         }
-                        .frame(width: 14.40, height: 14.40)
-                        .background(.white)
-                        .cornerRadius(9)
-                        .offset(x: pushNotificationsEnabled ? 8 : -8, y: 0)
+                        
+                        // Page title
+                        HStack {
+                            Text("Push Notifications")
+                                .font(Font.custom("Inter", size: 24).weight(.semibold))
+                                .foregroundColor(.black)
+                            Spacer()
+                        }
                     }
-                    .frame(width: 32, height: 16)
-                }
-                .buttonStyle(PlainButtonStyle())
-            }
-            .padding(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
-            .frame(width: 358)
-            .background(Color(red: 0.97, green: 0.97, blue: 0.97))
-            .cornerRadius(12)
-            .offset(x: 0, y: -206.50)
-            
-            // Bottom navigation tabs
-            HStack(alignment: .top, spacing: 8) {
-                // Tab 1
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
-                }
-                .padding(8)
-                .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-                .cornerRadius(8)
-                
-                // Tab 2
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
-                }
-                .padding(8)
-                .background(Color(red: 0.06, green: 0.06, blue: 0.06))
-                .cornerRadius(8)
-                
-                // Active tab (Profile)
-                HStack(spacing: 8) {
-                    ZStack {
-                        // Tab icon placeholder
-                    }
-                    .frame(width: 24, height: 24)
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
                     
+                    // Push notifications toggle section
+                    HStack(alignment: .top, spacing: 16) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Push Notifications")
+                                .font(Font.custom("Inter", size: 16).weight(.medium))
+                                .foregroundColor(.black)
+                            Text("Allow app to send you push notifications on your lockscreen")
+                                .font(Font.custom("Inter", size: 12).weight(.medium))
+                                .foregroundColor(.black.opacity(0.6))
+                        }
+                        
+                        Spacer()
+                        
+                        // Custom toggle switch
+                        Button(action: {
+                            pushNotificationsEnabled.toggle()
+                        }) {
+                            ZStack {
+                                // Toggle background
+                                Rectangle()
+                                    .frame(width: 32, height: 16)
+                                    .background(pushNotificationsEnabled ? Color(red: 1, green: 0.34, blue: 0.08) : Color.gray)
+                                    .cornerRadius(10)
+                                
+                                // Toggle thumb
+                                Circle()
+                                    .frame(width: 12, height: 12)
+                                    .background(.white)
+                                    .offset(x: pushNotificationsEnabled ? 8 : -8)
+                                
+                                // Small orange line in thumb
+                                if pushNotificationsEnabled {
+                                    Rectangle()
+                                        .frame(width: 1.6, height: 4.8)
+                                        .background(Color(red: 1, green: 0.34, blue: 0.08))
+                                        .cornerRadius(1)
+                                }
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .background(Color(red: 0.97, green: 0.97, blue: 0.97))
+                    .cornerRadius(12)
+                    .padding(.horizontal, 20)
+                    
+                    // Bottom padding for navigation bar
+                    Spacer()
+                        .frame(height: 100)
+                }
+            }
+            
+            // Bottom navigation bar
+            HStack(spacing: 0) {
+                // Dashboard
+                VStack(spacing: 4) {
+                    Image(systemName: "grid")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                
+                // Recordings
+                VStack(spacing: 4) {
+                    Image(systemName: "doc.text")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                
+                // Profile (Active)
+                VStack(spacing: 4) {
+                    Image(systemName: "person")
+                        .font(.system(size: 20, weight: .medium))
+                        .foregroundColor(.white)
                     Text("Profile")
                         .font(Font.custom("Manrope", size: 14).weight(.semibold))
                         .foregroundColor(.white)
                 }
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
                 .background(Color(red: 0.17, green: 0.17, blue: 0.17))
                 .cornerRadius(8)
+                .padding(.horizontal, 8)
             }
-            .padding(8)
-            .frame(width: 358)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 12)
             .background(Color(red: 0.06, green: 0.06, blue: 0.06))
             .cornerRadius(16)
-            .offset(x: 0, y: 370)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 20)
         }
-        .frame(width: 390, height: 844)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.white)
     }
 }
