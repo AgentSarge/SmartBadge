@@ -12,6 +12,7 @@ struct SignUpView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showLogin = false
+    @State private var showVerifyCode = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -261,12 +262,16 @@ struct SignUpView: View {
         .fullScreenCover(isPresented: $showLogin) {
             LoginView()
         }
+        .fullScreenCover(isPresented: $showVerifyCode) {
+            VerifyCodeView()
+        }
     }
     
     // MARK: - Helper Functions
     private func handleSignUp() {
         // Handle sign up logic
-        dismiss()
+        // After successful sign up, show verification code screen
+        showVerifyCode = true
     }
 }
 
