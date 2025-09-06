@@ -9,6 +9,7 @@ import SwiftUI
 
 struct VerifyCodeView: View {
     @State private var verificationCode: String = ""
+    @State private var showChangePassword = false
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -109,13 +110,16 @@ struct VerifyCodeView: View {
         }
         .frame(width: 390, height: 844)
         .background(.white)
+        .fullScreenCover(isPresented: $showChangePassword) {
+            ChangePasswordView()
+        }
     }
     
     // MARK: - Helper Functions
     private func handleVerification() {
         // Handle code verification logic
-        // For now, just dismiss the view
-        dismiss()
+        // After successful verification, show change password screen
+        showChangePassword = true
     }
 }
 
